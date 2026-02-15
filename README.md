@@ -1,43 +1,37 @@
-# 𝐑𝐮𝐥𝐞-𝐁𝐚𝐬𝐞𝐝 𝐏𝐲𝐭𝐡𝐨𝐧 𝐀𝐈 𝐒𝐲𝐦𝐩𝐭𝐨𝐦 𝐂𝐡𝐞𝐜𝐤𝐞𝐫 (𝐂𝐋𝐈 & 𝐅𝐚𝐬𝐭𝐀𝐏𝐈) 🧠🤖
-**Python | Rule-based AI | CLI Tool | FastAPI | Pydantic | JSON Output | Clinically-Informed Logic**
+# Rule-Based Clinical Symptom Checker
 
-<!-- Tech Stack -->
-![Python](https://img.shields.io/badge/python-3.13-blue) 
-![FastAPI](https://img.shields.io/badge/FastAPI-0.116.1-green) 
-![Pydantic](https://img.shields.io/badge/Pydantic-2.11.7-orange) 
-![Uvicorn](https://img.shields.io/badge/Uvicorn-0.35.0-lightgrey)
+***A Deterministic Python Clinical Inference System for Symptom-to-Differential Ranking***
 
-<!-- CI/CD & Quality -->
-![Pytest](https://img.shields.io/badge/Pytest-Testing-yellow) 
-![HTTPX](https://img.shields.io/badge/HTTPX-Client-red)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-blue)  
-![Build Status](https://img.shields.io/github/actions/workflow/status/SimonYip22/ai-symptom-checker/python-tests.yml?branch=main)
-![API Tests](https://img.shields.io/github/actions/workflow/status/SimonYip22/ai-symptom-checker/api-tests.yml?branch=main&label=api-tests)
+---
 
-<!-- Deployment -->
-[![Live Deployment](https://img.shields.io/badge/API-Live%20on%20Render-green)](https://ai-symptom-checker-5rfb.onrender.com/docs) 
-![Render](https://img.shields.io/badge/Render-Deployment-purple)
+## Executive Summary
 
-<!-- Repository Info -->
-![Release](https://img.shields.io/github/v/release/SimonYip22/ai-symptom-checker)
-![License](https://img.shields.io/badge/License-MIT-green) 
-![Issues](https://img.shields.io/github/issues/SimonYip22/ai-symptom-checker) 
-![Forks](https://img.shields.io/github/forks/SimonYip22/ai-symptom-checker) 
-![Stars](https://img.shields.io/github/stars/SimonYip22/ai-symptom-checker) 
-![Contributors](https://img.shields.io/github/contributors/SimonYip22/ai-symptom-checker)
+**Tech Stack:** Python · FastAPI · Uvicorn · Pydantic · Pytest · GitHub Actions (CI/CD)
 
-A **Python-based, rule-driven AI symptom checker** that leverages **clinical reasoning** to interpret patient-reported symptoms and rank potential conditions. Users can interact via a **command-line interface (CLI)** **or** a **FastAPI-based JSON API (v2)**, making the tool both scriptable and deployable for web integration.
+This project is a Python-based clinical decision-support engine that interprets patient-reported symptoms and produces a structured, ranked differential diagnosis. The system accepts symptom input through either a command-line interface (CLI) or a deployed FastAPI JSON API and applies explicitly encoded clinical reasoning to map reported features to candidate conditions. A formula-weighted scoring mechanism evaluates symptom alignment and prioritisation logic to generate the three most likely conditions, alongside matched symptoms and structured management guidance for the highest-ranked result.
 
-The **v2 API is live on Render** ([click here to try](https://ai-symptom-checker-5rfb.onrender.com/docs)) and continuously validated via GitHub Actions to ensure endpoints respond correctly.
+The system implements a deterministic rule-based architecture rather than a trained machine learning model. Clinical knowledge is encoded deterministically through condition–symptom mappings and transparent weighting rules, ensuring outputs remain interpretable, reproducible, and auditable. A preprocessing layer performs input normalisation and synonym mapping to standardise user-reported terminology prior to evaluation. Results are returned in structured JSON format to support downstream integration and programmatic consumption.
 
-The **v2 upgrade adds a deployable API**, allowing the system to serve JSON responses for top conditions, matched symptoms, and management advice—demonstrating production-ready backend capabilities alongside the original CLI.
+Version 2 extends the original CLI implementation into a deployable backend service with documented API endpoints, enabling web-based interaction and external system integration. Automated testing and continuous integration workflows validate both inference logic and API functionality to ensure reliability and structural integrity. The modular codebase supports future expansion, including potential integration of probabilistic reasoning frameworks or machine learning components, while preserving a deterministic reasoning core.
 
-The system outputs the **top 3 likely conditions**, including **matched symptoms** and **management advice** for the most probable diagnosis.
+Overall, the system demonstrates structured knowledge modelling, deterministic inference design, API deployment, automated testing, and clinically grounded rule encoding within a production-oriented Python project.
 
-This project demonstrates a **clinically-informed workflow**, where condition-symptom mappings and formula-weighted scoring reflect real-world clinical prioritisation. The outputs are interpretable, relevant, and grounded in clinical reasoning—skills that only a clinician could encode accurately. Modular code supports **future AI/ML integration**. 
+![Symptom Checker Flowchart](symptom-checker-flowchart.png)
+*Figure 1: Flowchart illustrating symptom input, normalisation, scoring, ranking, and structured output generation.*
 
-A **deployable backend** with API endpoints highlights production-readiness and makes the project recruiter-ready, showcasing both CLI and web-accessible functionality.
+---
 
+## Clinical & Technical Highlights
+
+| Feature | Description |
+|----------|-------------|
+| **Rule-Based Weighted Scoring** | Each symptom is assigned a condition-specific weight. Aggregated weighted scores simulate clinical prioritisation and differential reasoning. |
+| **Input Normalisation & Alias Mapping** | Accepts lay terminology (e.g., “high temperature” → “fever”) through synonym mapping to standardised clinical features. |
+| **Top 3 Condition Ranking** | Produces a ranked differential using a deterministic formula-based scoring system to approximate probabilistic-style output. |
+| **Educational Disclaimer** | Includes explicit usage limitations and safety framing to reinforce that outputs are informational, not diagnostic. |
+| **Advice Dictionary** | Provides structured, condition-specific management guidance for the highest-ranked diagnosis. |
+| **Modular CLI Architecture** | Separates input collection, normalisation, scoring logic, and output rendering to support maintainability and extensibility. |
+| **Future AI/ML Extension Potential** | Architected to allow integration of machine learning classifiers, NLP-based symptom extraction, or probabilistic reasoning frameworks. |
 
 ---
 
@@ -54,27 +48,6 @@ A **deployable backend** with API endpoints highlights production-readiness and 
 | **Testing & CI/CD** | Pytest manual testing of scoring logic | Automated Pytest + httpx validating live API endpoints; GitHub Actions ensures continuous validation and production-ready deployment |
 | **Clinical Insight** | Symptom-condition mappings encoded via clinical reasoning | Enables integration into web apps, dashboards, and future AI/ML models |
 | **Explainability** | Shows contribution of each symptom to condition score in console | Structured JSON output retains transparency; API facilitates analytics or logging |
-
----
-
-## System Workflow
-
-![Symptom Checker Flowchart](symptom-checker-flowchart.png)
-*Figure 1: Flowchart overview of symptom input, scoring, and output display workflow.*
-
-
----
-
-
-## Clinical & Technical Highlights
-
-- **Rule-based weighted scoring**: Each symptom has a weight per condition. Weighted scores simulate clinical prioritisation of symptoms per condition.  
-- **Input normalisation & alias mapping**: Accepts lay terms (e.g., “high temperature” → “fever”) for realistic user input handling.  
-- **Top 3 condition ranking**: Provides probabilistic-style output using a formula-based scoring system.  
-- **Educational disclaimer**: Emphasizes safe usage and clinical context.  
-- **Advice dictionary**: provides condition-specific management guidance.
-- **Modular CLI architecture**: Each step (input collection, normalization, scoring, display) is separated for maintainability and future expansion.  
-- **Future AI/ML potential**: Easily extendable for machine learning classifiers, NLP symptom extraction, or Bayesian reasoning.
 
 ---
 
@@ -146,14 +119,16 @@ A **deployable backend** with API endpoints highlights production-readiness and 
 
 ## Future Improvements
 
-- **AI/ML Integration**:
+**AI/ML Integration**:
   - Train classifiers on clinical datasets for probabilistic condition ranking.
   - NLP for symptom extraction from free text.
   -	Bayesian inference for probabilistic reasoning.
--	**UI/UX Enhancements**:
+
+**UI/UX Enhancements**:
   -	Web or GUI front-end.
   -	Real-time suggestions and auto-completion.
--	**External Data Integration**:
+
+**External Data Integration**:
   -	Pull real-time disease prevalence data.
   -	Connect with EHRs for personalised risk assessment.
 
