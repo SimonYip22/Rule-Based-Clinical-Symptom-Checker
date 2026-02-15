@@ -16,6 +16,8 @@ Version 2 extends the original CLI implementation into a deployable backend serv
 
 Overall, the system demonstrates structured knowledge modelling, deterministic inference design, API deployment, automated testing, and clinically grounded rule encoding within a production-oriented Python project.
 
+The deployed API (v2) is live on Render and can be accessed [here](https://ai-symptom-checker-5rfb.onrender.com/docs) for interactive testing and demonstration.
+
 ![Symptom Checker Flowchart](symptom-checker-flowchart.png)
 *Figure 1: Flowchart illustrating symptom input, normalisation, scoring, ranking, and structured output generation.*
 
